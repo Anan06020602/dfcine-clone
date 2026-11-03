@@ -1,26 +1,73 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+/* 全局暗黑底色 */
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #09090b !important; /* 极暗底色 */
+  color: #ededed;
+  overflow: hidden;
+}
+
+/* ---- 强行改造 React Flow 的画布外观 ---- */
+
+/* 1. 画布背景的网格颜色变暗 */
+.react-flow__background {
+  background-color: #09090b !important;
+}
+
+/* 2. 把所有节点变成“暗黑发光玻璃”质感 */
+.react-flow__node {
+  background-color: #18181b !important; /* 节点深灰底色 */
+  color: #ffffff !important; /* 文字纯白 */
+  border: 1px solid #3f3f46 !important; /* 边框细线 */
+  border-radius: 12px !important; /* 圆角 */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6), 0 0 10px rgba(59, 130, 246, 0.1) !important; /* 科技感发光阴影 */
+  transition: all 0.3s ease;
+}
+
+/* 鼠标悬停或选中节点时，边框变亮蓝发光 */
+.react-flow__node:hover,
+.react-flow__node.selected {
+  border-color: #3b82f6 !important;
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.3) !important;
+}
+
+/* 3. 节点里面的输入框（文本框）变暗黑风 */
+.react-flow__node input, 
+.react-flow__node textarea {
+  background-color: #09090b !important;
+  color: #ededed !important;
+  border: 1px solid #3f3f46 !important;
+  border-radius: 6px;
+  outline: none;
+}
+.react-flow__node input:focus, 
+.react-flow__node textarea:focus {
+  border-color: #3b82f6 !important;
+}
+
+/* 4. 连线（Edge）变成发光的蓝线 */
+.react-flow__edge-path {
+  stroke: #3b82f6 !important;
+  stroke-width: 2 !important;
+}
+
+/* 5. 节点之间的连接点（小圆点）变亮 */
+.react-flow__handle {
+  background-color: #3b82f6 !important;
+  border: 2px solid #09090b !important;
+  width: 10px !important;
+  height: 10px !important;
+}
+
+/* 6. 左上角面板/工具栏变暗（如果有的话） */
+.react-flow__panel {
+  background: #18181b !important;
+  border: 1px solid #3f3f46 !important;
+  border-radius: 8px;
+  padding: 10px !important;
+  color: white;
 }

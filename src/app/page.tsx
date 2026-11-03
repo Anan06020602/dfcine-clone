@@ -68,13 +68,14 @@ function Flow() {
   };
 
   return (
-    <div className="flex h-screen w-screen bg-gray-50">
-      {/* 左侧工具栏 */}
-      <aside className="w-64 bg-white border-r border-gray-200 p-4 shadow-sm z-10 flex flex-col gap-4">
-        <h2 className="text-lg font-bold text-gray-800 mb-2">🧰 节点工具箱</h2>
+    // 背景改为极暗色
+    <div className="flex h-screen w-screen bg-[#09090b]">
+      {/* 左侧工具栏改为暗黑玻璃质感 */}
+      <aside className="w-64 bg-[#18181b] border-r border-[#3f3f46] p-4 shadow-xl z-10 flex flex-col gap-4">
+        <h2 className="text-lg font-bold text-white mb-2 drop-shadow-md">🧰 节点工具箱</h2>
         
         <div
-          className="p-3 bg-gray-100 rounded-md border border-gray-300 cursor-grab hover:bg-gray-200 transition-colors text-center text-sm font-medium text-gray-700"
+          className="p-3 bg-[#27272a] rounded-lg border border-[#3f3f46] cursor-grab hover:bg-[#3f3f46] transition-all text-center text-sm font-medium text-gray-200 shadow-sm hover:shadow-blue-500/20"
           onDragStart={(event) => onDragStart(event, "textNode")}
           draggable
         >
@@ -82,7 +83,7 @@ function Flow() {
         </div>
         
         <div
-          className="p-3 bg-gray-100 rounded-md border border-gray-300 cursor-grab hover:bg-gray-200 transition-colors text-center text-sm font-medium text-gray-700"
+          className="p-3 bg-[#27272a] rounded-lg border border-[#3f3f46] cursor-grab hover:bg-[#3f3f46] transition-all text-center text-sm font-medium text-gray-200 shadow-sm hover:shadow-blue-500/20"
           onDragStart={(event) => onDragStart(event, "imageNode")}
           draggable
         >
@@ -102,10 +103,16 @@ function Flow() {
           onDrop={onDrop}
           onDragOver={onDragOver}
           fitView
+          colorMode="dark" // 强制暗色模式
         >
-          <Background />
-          <Controls />
-          <MiniMap />
+          {/* 画布网格改为深灰色，点调小 */}
+          <Background color="#3f3f46" gap={20} size={1.5} />
+          <Controls className="bg-[#18181b] border-[#3f3f46] fill-white" />
+          <MiniMap 
+            style={{ backgroundColor: '#18181b' }} 
+            nodeColor="#3b82f6" 
+            maskColor="rgba(0, 0, 0, 0.7)" 
+          />
         </ReactFlow>
       </div>
     </div>
